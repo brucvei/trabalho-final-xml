@@ -16,6 +16,6 @@ public class TrabalhoFinalApplication {
 
 	@GetMapping("/")
 	public String hello() throws Exception {
-		return Notas.parse(2);
+		return Notas.parse(1);
 	}
 }
