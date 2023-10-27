@@ -1,4 +1,5 @@
 # Trabalho Final de Linguagens de Marcação Extensíveis
+
 ## Java com JSON
 
 ### Descrição do Projeto
@@ -6,13 +7,14 @@
 Apresentar como que a linguagem de programação escolhida permite o processamento ou JSON, desde a abertura e carregamento dos documentos, sua estruturação em memória, possibilidades de processamento e geração de arquivos de saída.
 
 ### Requisitos
+
 As apresentações devem demonstrar, a nível de código, cada um dos 4 pontos descritos a seguir. 
 - código fonte, 
 - como ele foi compilado/interpretado, 
 - as ferramentas (compilador, interpretador, bibliotecas, IDE, etc) utilizadas,
 - resultado foi gerado
 
-1. transformar o arquivo de filmes em XML para JSON, sem perder conteúdo
+1. *transformar o arquivo de filmes em XML para JSON, sem perder conteúdo*
 2. validar o JSON criado com JSON Schema correspondente
 3. aplicar consultas em JSON
    - número de produtos em todas as notas
