@@ -16,7 +16,11 @@ public class TrabalhoFinalApplication {
 	}
 
 	@GetMapping("/nota/{index}")
-	public String hello(@PathVariable Integer index) throws Exception {
-		return Notas.parse(index);
+	public String getNFe(@PathVariable Integer index) throws Exception {
+		String nfe = Notas.parse(index);
+		if (nfe == null) {
+			throw new Exception("Nota não encontrada");
+		}
+		return nfe;
 	}
 }

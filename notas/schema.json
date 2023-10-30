@@ -37,8 +37,7 @@
               "type": "number"
             }
           },
-          "required": ["nProt", "digVal", "verAplic", "dhRecbto", "chNFe", "xMotivo", "tpAmb", "cStat"
-          ]
+          "required": ["nProt", "digVal", "verAplic", "dhRecbto", "chNFe", "xMotivo", "tpAmb", "cStat"]
         }
       },
       "required": ["versao", "infProt"]
@@ -143,7 +142,7 @@
                               "type": "number"
                             }
                           },
-                            "required": ["pICMS", "orig", "CST", "modBC", "vBC", "vICMS"]
+                          "required": ["pICMS", "orig", "CST", "modBC", "vBC", "vICMS"]
                         },
                         "ICMS60": {
                           "type": "object",
@@ -176,9 +175,26 @@
                             }
                           },
                           "required": ["CST"]
+                        },
+                        "CONFINSAliq": {
+                          "type": "object",
+                          "properties": {
+                            "pCOFINS": {
+                            "type": "number"
+                            },
+                            "vBC": {
+                            "type": "number"
+                            },
+                            "vCOFINS": {
+                            "type": "number"
+                            },
+                            "CST": {
+                              "type": "string"
+                            }
+                          },
+                          "required": ["CST", "pCOFINS", "vBC", "vCOFINS"]
                         }
-                      },
-                      "required": ["COFINSNT"]
+                      }
                     },
                     "PIS": {
                       "type": "object",
@@ -191,13 +207,53 @@
                             }
                           },
                           "required": ["CST"]
+                        },
+                        "PISAliq": {
+                          "type": "object",
+                          "properties": {
+                            "pPIS": {
+                              "type": "number"
+                            },
+                            "vBC": {
+                              "type": "number"
+                            },
+                            "vPIS": {
+                              "type": "number"
+                            },
+                            "CST": {
+                              "type": "string"
+                            }
+                          },
+                          "required": ["CST", "pPIS", "vBC", "vPIS"]
+                        }
+                      }
+                    },
+                    "IPI": {
+                      "type": "object",
+                      "properties": {
+                        "IPINT": {
+                          "type": "object",
+                          "properties": {
+                            "CST": {
+                            "type": "string"
+                          }
+                        },
+                        "required": ["CST"]
+                        },
+                        "cEnq": {
+                          "type": "number"
                         }
                       },
-                      "required": ["PISNT"]
+                      "required": ["IPINT", "cEnq"]
                     }
-                  }
+                  },
+                  "required": ["ICMS", "COFINS", "PIS"]
+                },
+                "infAdProd": {
+                  "type": "string"
                 }
-              }
+              },
+              "required": ["nItem", "prod", "imposto"]
             },
             "total": {
               "type": "object",
@@ -248,9 +304,10 @@
                       "type": "number"
                     }
                   },
-                    "required": ["vCOFINS", "vBCST", "vProd", "vSeg", "vNF", "vPIS", "vBC", "vST", "vICMS", "vII", "vDesc", "vOutro", "vIPI", "vFrete"]
+                  "required": ["vCOFINS", "vBCST", "vProd", "vSeg", "vNF", "vPIS", "vBC", "vST", "vICMS", "vII", "vDesc", "vOutro", "vIPI", "vFrete"]
                 }
-              }
+              },
+              "required": ["ICMSTot"]
             },
             "entrega": {
               "type": "object",
@@ -339,7 +396,8 @@
                 "indPag": {
                   "type": "number"
                 }
-              }
+              },
+              "required": ["tpNF", "mod", "tpImp", "nNF", "cMunFG", "procEmi", "finNFe", "tpAmb", "dEmi", "tpEmis", "cDV", "cUF", "serie", "natOp", "cNF", "verProc", "indPag"]
             },
             "emit": {
               "type": "object",
@@ -392,12 +450,14 @@
                     "CEP": {
                       "type": "number"
                     }
-                  }
+                  },
+                  "required": ["UF", "xPais", "cPais", "xLgr", "xMun", "nro", "cMun", "xBairro", "CEP"]
                 },
                 "IE": {
                   "type": "number"
                 }
-              }
+              },
+              "required": ["xNome", "CRT", "xFant", "CNPJ", "enderEmit", "IE"]
             },
             "dest": {
               "type": "object",
@@ -444,7 +504,8 @@
                     "CEP": {
                       "type": "number"
                     }
-                  }
+                  },
+                  "required": ["xCpl", "fone", "UF", "xPais", "cPais", "xLgr", "xMun", "nro", "cMun", "xBairro", "CEP"]
                 },
                 "IE": {
                   "type": "string"
@@ -452,7 +513,8 @@
                 "email": {
                   "type": "string"
                 }
-              }
+              },
+              "required": ["xNome", "CPF", "enderDest", "IE", "email"]
             },
             "versao": {
               "type": "string"
@@ -478,11 +540,26 @@
                     "pesoB": {
                       "type": "number"
                     }
-                  }
+                  },
+                  "required": ["pesoL", "qVol", "pesoB"]
+                },
+                "transporta": {
+                  "type": "object",
+                  "properties": {
+                    "xNome": {
+                      "type": "string"
+                    },
+                    "IE": {
+                      "type": "number"
+                    }
+                  },
+                  "required": ["xNome", "IE"]
                 }
-              }
+              },
+              "required": ["modFrete", "vol"]
             }
-          }
+          },
+          "required": ["infAdic", "det", "total", "Id", "ide", "emit", "dest", "versao", "transp"]
         },
         "Signature": {
           "type": "object",
@@ -499,9 +576,11 @@
                     "X509Certificate": {
                       "type": "string"
                     }
-                  }
+                  },
+                  "required": ["X509Certificate"]
                 }
-              }
+              },
+              "required": ["X509Data"]
             },
             "SignedInfo": {
               "type": "object",
@@ -518,9 +597,11 @@
                             "Algorithm": {
                               "type": "string"
                             }
-                          }
+                          },
+                          "required": ["Algorithm"]
                         }
-                      }
+                      },
+                      "required": ["Transform"]
                     },
                     "DigestMethod": {
                       "type": "object",
@@ -528,7 +609,8 @@
                         "Algorithm": {
                           "type": "string"
                         }
-                      }
+                      },
+                      "required": ["Algorithm"]
                     },
                     "DigestValue": {
                       "type": "string"
@@ -536,7 +618,8 @@
                     "URI": {
                       "type": "string"
                     }
-                  }
+                  },
+                  "required": ["Transforms", "DigestMethod", "DigestValue", "URI"]
                 },
                 "CanonicalizationMethod": {
                   "type": "object",
@@ -544,7 +627,8 @@
                     "Algorithm": {
                       "type": "string"
                     }
-                  }
+                  },
+                  "required": ["Algorithm"]
                 },
                 "SignatureMethod": {
                   "type": "object",
@@ -552,18 +636,18 @@
                     "Algorithm": {
                       "type": "string"
                     }
-                  }
+                  },
+                  "required": ["Algorithm"]
                 }
-              }
+              },
+              "required": ["Reference", "CanonicalizationMethod", "SignatureMethod"]
             }
-          }
+          },
+          "required": ["SignatureValue", "KeyInfo", "SignedInfo"]
         }
-      }
+      },
+      "required": ["infNFe", "Signature"]
     }
   },
-  "required": [
-    "id",
-    "name",
-    "price"
-  ]
+  "required": ["protNFe", "versao", "NFe"]
 }
