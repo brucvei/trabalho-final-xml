@@ -4,7 +4,9 @@
 
 ### Descrição do Projeto
 
-Apresentar como que a linguagem de programação escolhida permite o processamento ou JSON, desde a abertura e carregamento dos documentos, sua estruturação em memória, possibilidades de processamento e geração de arquivos de saída.
+Apresentar como que a linguagem de programação escolhida permite o processamento do JSON, 
+desde a abertura e carregamento dos documentos, sua estruturação em memória, 
+possibilidades de processamento e geração de arquivos de saída.
 
 ### Requisitos
 
@@ -15,7 +17,7 @@ As apresentações devem demonstrar, a nível de código, cada um dos 4 pontos d
 - resultado foi gerado
 
 1. *transformar o arquivo de filmes em XML para JSON, sem perder conteúdo*
-2. validar o JSON criado com JSON Schema correspondente
+2. *validar o JSON criado com JSON Schema correspondente*
 3. aplicar consultas em JSON
    - número de produtos em todas as notas
    - valor total dos produtos
