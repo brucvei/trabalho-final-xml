@@ -33,7 +33,7 @@ Framework para desenvolvimento de aplicações web. Utilizado para estilizar o f
 
 #### Express
 Framework para desenvolvimento de aplicações web com Node.js. Utilizado para criar uma API REST.
-- [Instalação](https://expressjs.com/pt-br/starter/installing.html)
+- [Instalação](https://expressjs.com/pt-br/starter/generator.html)
 
 ## Fontes para o trabalho
 - XML Parsing: https://xml.jcabi.com/
