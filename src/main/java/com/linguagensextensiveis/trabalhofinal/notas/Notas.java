@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
 import com.jcabi.xml.XML;
 import com.jcabi.xml.XMLDocument;
 import org.everit.json.schema.ValidationException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.loader.SchemaLoader;
@@ -67,30 +68,27 @@ public class Notas {
 	}
 
 	// todos os produtos de todas as notas
-	public JSONObject getProdutos() {
+	public Collection<JSONObject> getProdutos() {
 		Collection<JSONObject> notas = parseAll();
-		JSONObject produtos = new JSONObject();
+		Collection<JSONObject> produtos = new ArrayList<>();
 		for (JSONObject nota : notas) {
-			System.out.println(nota);
-			JSONObject produtosNota = nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe")
-					.getJSONObject("det").getJSONObject("prod");
-//			System.out.println(produtosNota);
-			Set<String> keys = produtosNota.keySet();
-			for (String key : keys) {
-				JSONObject produto = produtosNota.getJSONObject(key);
-				String codigo = produto.getString("cProd");
-				String descricao = produto.getString("xProd");
-				String preco = produto.getString("vProd");
-				produtos.put(codigo, descricao + " - R$" + preco);
-			}
+			Collection<JSONObject> produtosNota = new ArrayList<>();
+			produtosNota.add(nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe"));
+			produtosNota.stream().map(produto -> produto.get("det")).forEach(det -> {
+				if (det instanceof JSONObject) {
+					produtos.add(((JSONObject) det).getJSONObject("prod"));
+				} else if (det instanceof JSONArray) {
+					((JSONArray) det).forEach(obj -> produtos.add(((JSONObject) obj).getJSONObject("prod")));
+				}
+			});
 		}
 		return produtos;
 	}
 
 	// número de produtos em todas as notas
 	public Integer getNumeroProdutos() {
-		JSONObject produtos = getProdutos();
-		return produtos.length();
+		Collection<JSONObject> produtos = getProdutos();
+		return produtos.size();
 	}
 
 	// total de ISSQN retido

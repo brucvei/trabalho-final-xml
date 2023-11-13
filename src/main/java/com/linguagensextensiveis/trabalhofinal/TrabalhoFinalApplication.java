@@ -41,8 +41,8 @@ public class TrabalhoFinalApplication {
 	}
 
 	@GetMapping("/produtos")
-	public JSONObject getProdutos() throws Exception {
-		JSONObject produtos = notas.getProdutos();
+	public Collection<JSONObject> getProdutos() throws Exception {
+		Collection<JSONObject> produtos = notas.getProdutos();
 		if (produtos == null) {
 			throw new Exception("Produtos não encontrados");
 		}
