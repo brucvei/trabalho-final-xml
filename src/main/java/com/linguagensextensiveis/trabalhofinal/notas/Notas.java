@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -16,6 +17,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Notas {
+
+	public XML get(Integer index) throws FileNotFoundException {
+		return new XMLDocument(new File("notas/nota" + index + ".xml"));
+	}
 
 	// get nota by index
 	public JSONObject parse(Integer index) {
@@ -178,4 +183,10 @@ public class Notas {
 		System.out.println(notaMaior);
 		return notaMaior;
 	}
+
+	public Integer getNumeroNotas() {
+		return parseAll().size();
+	}
+
+
 }

@@ -28,10 +28,10 @@ As apresentações devem demonstrar, a nível de código, cada um dos 4 pontos d
    - detalhes do produto com menor preço
    - detalhes da nota com maior imposto
 4. aplicar transformações em JSON - construir um código que gere um conjunto de páginas HTML para cada nota fiscal
-   - possui a informação de cada nota
+   -- possui a informação de cada nota
    - cálculo dos impostos
-   - apresentação de todas as notas
-   - link para cada nota
+   -- apresentação de todas as notas
+   -- link para cada nota
    - dashboard com o número de notas fiscais
    - número de produtos nessas notas
    - valores totais dos produtos

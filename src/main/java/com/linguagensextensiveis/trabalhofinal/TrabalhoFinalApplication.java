@@ -3,6 +3,7 @@ package com.linguagensextensiveis.trabalhofinal;
 import com.linguagensextensiveis.trabalhofinal.notas.ICMS;
 import com.linguagensextensiveis.trabalhofinal.notas.Notas;
 import org.json.JSONObject;
+import com.jcabi.xml.XML;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,23 +23,48 @@ public class TrabalhoFinalApplication {
 		SpringApplication.run(TrabalhoFinalApplication.class, args);
 	}
 
+	@GetMapping("/")
+	public String index() {
+		System.out.println("Hello World!");
+		return "Processando JSON com Java!";
+	}
+
 	@GetMapping("/nota/all")
-	public Collection<JSONObject> getAllNFe() throws Exception {
+	public String getAllNFe() throws Exception {
 		Collection<JSONObject> nfe = notas.parseAll();
 		if (nfe == null) {
 			throw new Exception("Nota não encontrada");
 		}
-		return nfe;
+		System.out.println(nfe);
+		return nfe.toString();
 	}
 
 
 	@GetMapping("/nota/{index}")
-	public JSONObject getNFe(@PathVariable Integer index) throws Exception {
+	public String getNFe(@PathVariable Integer index) throws Exception {
 		JSONObject nfe = notas.parse(index);
 		if (nfe == null) {
 			throw new Exception("Nota não encontrada");
 		}
-		return nfe;
+		return nfe.toString();
+	}
+
+	@GetMapping("/nota/quantidade")
+	public Integer getNumeroNotas() throws Exception {
+		Integer produtos = notas.getNumeroNotas();
+		if (produtos == null) {
+			throw new Exception("Produtos não encontrados");
+		}
+		return produtos;
+	}
+
+	@GetMapping("/nota/{index}/produto/quantidade")
+	public String getNFeQntdDeProdutos(@PathVariable Integer index) throws Exception {
+		JSONObject nfe = notas.parse(index);
+		if (nfe == null) {
+			throw new Exception("Nota não encontrada");
+		}
+		return nfe.toString();
 	}
 
 	@GetMapping("/produtos")
