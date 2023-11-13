@@ -1,5 +1,6 @@
 package com.linguagensextensiveis.trabalhofinal;
 
+import com.linguagensextensiveis.trabalhofinal.notas.ICMS;
 import com.linguagensextensiveis.trabalhofinal.notas.Notas;
 import org.json.JSONObject;
 import org.springframework.boot.SpringApplication;
@@ -68,8 +69,8 @@ public class TrabalhoFinalApplication {
 	}
 
 	@GetMapping("/icms")
-	public BigDecimal getICMS() throws Exception {
-		BigDecimal icms = notas.getICMS();
+	public ICMS getICMS() throws Exception {
+		ICMS icms = notas.getICMS();
 		if (icms == null) {
 			throw new Exception("ICMS não encontrado");
 		}
@@ -94,9 +95,9 @@ public class TrabalhoFinalApplication {
 		return frete;
 	}
 
-	@GetMapping("/produto/barato")
-	public String getProdutoBarato() throws Exception{
-		String menorPreco = notas.getProdutoBarato();
+	@GetMapping("/produtos/barato")
+	public JSONObject getProdutoBarato() throws Exception{
+		JSONObject menorPreco = notas.getProdutoBarato();
 		if (menorPreco == null) {
 			throw new Exception("Produto de menor preço não encontrado");
 		}

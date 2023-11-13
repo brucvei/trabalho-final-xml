@@ -25,12 +25,23 @@ Não é necessario a instalação da linguagem pois o navegador ja possui um int
 
 ### Frameworks
 #### Spring Boot
-Framework para desenvolvimento de aplicações Java. Utilizado para criar uma API REST.
+Framework para desenvolvimento de aplicações Java. Utilizado para criar uma API REST. A instalação é feita a partir da IDE IntelliJ IDEA.
 
 #### Bootstrap
 Framework para desenvolvimento de aplicações web. Utilizado para estilizar o front-end da aplicação.
+- [Instalação](https://getbootstrap.com/docs/4.5/getting-started/download/)
+
+#### Express
+Framework para desenvolvimento de aplicações web com Node.js. Utilizado para criar uma API REST.
+- [Instalação](https://expressjs.com/pt-br/starter/installing.html)
 
 ## Fontes para o trabalho
 - XML Parsing: https://xml.jcabi.com/
 - Convert xml to json: https://javatpoint.com/convert-xml-to-json-in-java
 - Json validator: https://www.techblogss.com/java/java-json-schema-validation
+
+## Importante
+Sobre o cálculo dos impostos e o valor aproximado de tributo, 
+não encontrei a fórmula para o cálculo do valor aproximado de tributos e do ISSQN, 
+ai fiz da forma que achei melhor, 
+então o calculo não é real mas ainda manipulo os valores retirados do JSON.
