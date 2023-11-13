@@ -34,3 +34,9 @@ Framework para desenvolvimento de aplicações web. Utilizado para estilizar o f
 - XML Parsing: https://xml.jcabi.com/
 - Convert xml to json: https://javatpoint.com/convert-xml-to-json-in-java
 - Json validator: https://www.techblogss.com/java/java-json-schema-validation
+
+## Importante
+Sobre o cálculo dos impostos e o valor aproximado de tributo, 
+não encontrei a fórmula para o cálculo do valor aproximado de tributos e do ISSQN, 
+ai fiz da forma que achei melhor, 
+então o calculo não é real mas ainda manipulo os valores retirados do JSON.

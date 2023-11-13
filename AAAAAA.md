@@ -18,7 +18,7 @@ As apresentações devem demonstrar, a nível de código, cada um dos 4 pontos d
 
 1. *transformar o arquivo de filmes em XML para JSON, sem perder conteúdo*
 2. *validar o JSON criado com JSON Schema correspondente*
-3. aplicar consultas em JSON
+3. *aplicar consultas em JSON*
    - número de produtos em todas as notas
    - valor total dos produtos
    - total de ISSQN retido
@@ -46,11 +46,3 @@ As apresentações devem demonstrar, a nível de código, cada um dos 4 pontos d
      - quantidade de itens
      - preço unitário
      - preço total
-
-readme.txt -> processo de instalação de ferramentas e configuração das mesmas para a sua execução.
-
-### Critérios da avaliação:
-- 3,0 pontos: validação do documento XML/JSON
-- 2,0 pontos: consultas no documento
-- 3,0 pontos: transformação do documento
-- 2,0 pontos: apresentação e didática ao passar o conteúdo
