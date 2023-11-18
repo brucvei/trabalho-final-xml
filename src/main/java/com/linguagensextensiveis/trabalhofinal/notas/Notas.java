@@ -74,13 +74,45 @@ public class Notas {
 			produtosNota.add(nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe"));
 			produtosNota.stream().map(produto -> produto.get("det")).forEach(det -> {
 				if (det instanceof JSONObject) {
-					produtos.add(((JSONObject) det).getJSONObject("prod"));
+					JSONObject prod = ((JSONObject) det).getJSONObject("prod");
+					prod.append("nNF", nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe").getJSONObject("ide").getBigInteger("nNF"));
+					produtos.add(prod);
 				} else if (det instanceof JSONArray) {
-					((JSONArray) det).forEach(obj -> produtos.add(((JSONObject) obj).getJSONObject("prod")));
+					((JSONArray) det).forEach(obj -> {
+						JSONObject prod = ((JSONObject) obj).getJSONObject("prod");
+						prod.append("nNF", nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe").getJSONObject("ide").getBigInteger("nNF"));
+						produtos.add(prod);
+					});
 				}
 			});
 		}
 		return produtos;
+	}
+
+//	public Collection<JSONObject> getProdutosNfe(Integer index) {
+//		Collection<JSONObject> produtos = new ArrayList<>();
+//		JSONObject nota = parse(index);
+//		Collection<JSONObject> produtosNota = new ArrayList<>();
+//		produtosNota.add(nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe"));
+//		produtosNota.stream().map(produto -> produto.get("det")).forEach(det -> {
+//			if (det instanceof JSONObject) {
+//				produtos.add(((JSONObject) det).getJSONObject("prod"));
+//			} else if (det instanceof JSONArray) {
+//				((JSONArray) det).forEach(obj -> produtos.add(((JSONObject) obj).getJSONObject("prod")));
+//			}
+//		});
+//
+//		produtos.add(nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe").getJSONObject("ide").getJSONObject("nNF"));
+//		return produtos;
+//	}
+
+	public BigDecimal getValorTotalProdutos() {
+		Collection<JSONObject> produtos = getProdutos();
+		BigDecimal valorTotal = BigDecimal.ZERO;
+		for (JSONObject produto : produtos) {
+			valorTotal = valorTotal.add(produto.getBigDecimal("vProd"));
+		}
+		return valorTotal;
 	}
 
 	// número de produtos em todas as notas
@@ -187,6 +219,7 @@ public class Notas {
 	public Integer getNumeroNotas() {
 		return parseAll().size();
 	}
+
 
 
 }

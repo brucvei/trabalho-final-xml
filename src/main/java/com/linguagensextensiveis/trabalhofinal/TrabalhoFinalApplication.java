@@ -58,18 +58,27 @@ public class TrabalhoFinalApplication {
 		return produtos;
 	}
 
-	@GetMapping("/nota/{index}/produto/quantidade")
-	public String getNFeQntdDeProdutos(@PathVariable Integer index) throws Exception {
-		JSONObject nfe = notas.parse(index);
-		if (nfe == null) {
-			throw new Exception("Nota não encontrada");
-		}
-		return nfe.toString();
-	}
+//	@GetMapping("/nota/{index}/produto/quantidade")
+//	public String getProdutosNfe(@PathVariable Integer index) throws Exception {
+//		JSONObject produtos = notas.getProdutosNfe(index);
+//		if (produtos == null) {
+//			throw new Exception("Nota não encontrada");
+//		}
+//		return produtos.toString();
+//	}
 
 	@GetMapping("/produtos")
-	public Collection<JSONObject> getProdutos() throws Exception {
+	public String getProdutos() throws Exception {
 		Collection<JSONObject> produtos = notas.getProdutos();
+		if (produtos == null) {
+			throw new Exception("Produtos não encontrados");
+		}
+		return produtos.toString();
+	}
+
+	@GetMapping("/produtos/valor-total")
+	public BigDecimal getValorTotalProdutos() throws Exception {
+		BigDecimal produtos = notas.getValorTotalProdutos();
 		if (produtos == null) {
 			throw new Exception("Produtos não encontrados");
 		}
