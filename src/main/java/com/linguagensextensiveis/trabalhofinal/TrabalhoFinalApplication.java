@@ -131,8 +131,8 @@ public class TrabalhoFinalApplication {
 	}
 
 	@GetMapping("/produtos/barato")
-	public JSONObject getProdutoBarato() throws Exception{
-		JSONObject menorPreco = notas.getProdutoBarato();
+	public String getProdutoBarato() throws Exception{
+		String menorPreco = notas.getProdutoBarato();
 		if (menorPreco == null) {
 			throw new Exception("Produto de menor preço não encontrado");
 		}
@@ -140,8 +140,8 @@ public class TrabalhoFinalApplication {
 	}
 
 	@GetMapping("/nota/maior")
-	public JSONObject getNotaMaior() throws Exception{
-		JSONObject maiorNota = notas.getNotaMaior();
+	public String getNotaMaior() throws Exception{
+		String maiorNota = notas.getNotaMaior();
 		if (maiorNota == null) {
 			throw new Exception("Nota com maior tributacao não encontrada");
 		}

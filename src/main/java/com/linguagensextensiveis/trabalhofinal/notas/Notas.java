@@ -76,11 +76,15 @@ public class Notas {
 				if (det instanceof JSONObject) {
 					JSONObject prod = ((JSONObject) det).getJSONObject("prod");
 					prod.append("nNF", nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe").getJSONObject("ide").getBigInteger("nNF"));
+					prod.append("dEmi", nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe").getJSONObject("ide").getString("dEmi"));
+					prod.append("impostos", ((JSONObject) det).getJSONObject("imposto"));
 					produtos.add(prod);
 				} else if (det instanceof JSONArray) {
 					((JSONArray) det).forEach(obj -> {
 						JSONObject prod = ((JSONObject) obj).getJSONObject("prod");
 						prod.append("nNF", nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe").getJSONObject("ide").getBigInteger("nNF"));
+						prod.append("dEmi", nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe").getJSONObject("ide").getString("dEmi"));
+						prod.append("impostos", ((JSONObject) obj).getJSONObject("imposto"));
 						produtos.add(prod);
 					});
 				}
@@ -174,7 +178,7 @@ public class Notas {
 	}
 
 //	detalhes do produto com menor preço
-	public JSONObject getProdutoBarato() {
+	public String getProdutoBarato() {
 		JSONObject produtoBarato = null;
 		Collection<JSONObject> produtos = getProdutos();
 		for (JSONObject produto : produtos) {
@@ -186,12 +190,12 @@ public class Notas {
 				}
 			}
 		}
-		System.out.println(produtoBarato);
-		return produtoBarato;
+		String desc = produtoBarato.getString("xProd");
+		return desc;
 	}
 
 //	detalhes da nota com maior imposto
-	public JSONObject getNotaMaior() {
+	public String getNotaMaior() {
 		JSONObject notaMaior = null;
 		BigDecimal maiorTributo = BigDecimal.ZERO;
 		Collection<JSONObject> notas = parseAll();
@@ -212,8 +216,8 @@ public class Notas {
 				}
 			}
 		}
-		System.out.println(notaMaior);
-		return notaMaior;
+		Integer number = notaMaior.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe").getJSONObject("ide").getInt("nNF");
+		return number.toString();
 	}
 
 	public Integer getNumeroNotas() {
