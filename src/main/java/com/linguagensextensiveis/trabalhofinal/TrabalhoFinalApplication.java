@@ -3,7 +3,6 @@ package com.linguagensextensiveis.trabalhofinal;
 import com.linguagensextensiveis.trabalhofinal.notas.ICMS;
 import com.linguagensextensiveis.trabalhofinal.notas.Notas;
 import org.json.JSONObject;
-import com.jcabi.xml.XML;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;

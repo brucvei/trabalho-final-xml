@@ -5,8 +5,10 @@
 ### Descrição do Projeto
 
 Apresentar como que a linguagem de programação escolhida permite o processamento do JSON, 
-desde a abertura e carregamento dos documentos, sua estruturação em memória, 
-possibilidades de processamento e geração de arquivos de saída.
+desde a abertura e carregamento dos documentos,
+sua estruturação em memória, 
+possibilidades de processamento e 
+geração de arquivos de saída.
 
 ### Requisitos
 

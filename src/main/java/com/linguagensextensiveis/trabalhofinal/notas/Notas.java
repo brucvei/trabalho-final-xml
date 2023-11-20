@@ -9,7 +9,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -18,18 +17,15 @@ import java.util.Collection;
 
 public class Notas {
 
-	public XML get(Integer index) throws FileNotFoundException {
-		return new XMLDocument(new File("notas/nota" + index + ".xml"));
-	}
-
 	// get nota by index
 	public JSONObject parse(Integer index) {
 		try {
 			// Get XML from file and transform to JSON
 			XML xml = new XMLDocument(new File("notas/nota" + index + ".xml"));
 			String string = xml.toString();
+//			System.out.println(string);
 			JSONObject json = org.json.XML.toJSONObject(string);
-
+			System.out.println(json.toString(4));
 			System.out.println("Writing to json file...");
 			PrintWriter out = new PrintWriter(new FileWriter("notas/tmp.json"));
 			out.write(json.toString(4));
@@ -71,19 +67,24 @@ public class Notas {
 		Collection<JSONObject> produtos = new ArrayList<>();
 		for (JSONObject nota : notas) {
 			Collection<JSONObject> produtosNota = new ArrayList<>();
-			produtosNota.add(nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe"));
+			produtosNota.add(nota.getJSONObject("nfeProc").getJSONObject("NFe")
+					.getJSONObject("infNFe"));
 			produtosNota.stream().map(produto -> produto.get("det")).forEach(det -> {
 				if (det instanceof JSONObject) {
 					JSONObject prod = ((JSONObject) det).getJSONObject("prod");
-					prod.append("nNF", nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe").getJSONObject("ide").getBigInteger("nNF"));
-					prod.append("dEmi", nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe").getJSONObject("ide").getString("dEmi"));
+					prod.append("nNF", nota.getJSONObject("nfeProc").getJSONObject("NFe")
+							.getJSONObject("infNFe").getJSONObject("ide").getBigInteger("nNF"));
+					prod.append("dEmi", nota.getJSONObject("nfeProc").getJSONObject("NFe")
+							.getJSONObject("infNFe").getJSONObject("ide").getString("dEmi"));
 					prod.append("impostos", ((JSONObject) det).getJSONObject("imposto"));
 					produtos.add(prod);
 				} else if (det instanceof JSONArray) {
 					((JSONArray) det).forEach(obj -> {
 						JSONObject prod = ((JSONObject) obj).getJSONObject("prod");
-						prod.append("nNF", nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe").getJSONObject("ide").getBigInteger("nNF"));
-						prod.append("dEmi", nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe").getJSONObject("ide").getString("dEmi"));
+						prod.append("nNF", nota.getJSONObject("nfeProc").getJSONObject("NFe")
+								.getJSONObject("infNFe").getJSONObject("ide").getBigInteger("nNF"));
+						prod.append("dEmi", nota.getJSONObject("nfeProc").getJSONObject("NFe")
+								.getJSONObject("infNFe").getJSONObject("ide").getString("dEmi"));
 						prod.append("impostos", ((JSONObject) obj).getJSONObject("imposto"));
 						produtos.add(prod);
 					});
@@ -92,23 +93,6 @@ public class Notas {
 		}
 		return produtos;
 	}
-
-//	public Collection<JSONObject> getProdutosNfe(Integer index) {
-//		Collection<JSONObject> produtos = new ArrayList<>();
-//		JSONObject nota = parse(index);
-//		Collection<JSONObject> produtosNota = new ArrayList<>();
-//		produtosNota.add(nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe"));
-//		produtosNota.stream().map(produto -> produto.get("det")).forEach(det -> {
-//			if (det instanceof JSONObject) {
-//				produtos.add(((JSONObject) det).getJSONObject("prod"));
-//			} else if (det instanceof JSONArray) {
-//				((JSONArray) det).forEach(obj -> produtos.add(((JSONObject) obj).getJSONObject("prod")));
-//			}
-//		});
-//
-//		produtos.add(nota.getJSONObject("nfeProc").getJSONObject("NFe").getJSONObject("infNFe").getJSONObject("ide").getJSONObject("nNF"));
-//		return produtos;
-//	}
 
 	public BigDecimal getValorTotalProdutos() {
 		Collection<JSONObject> produtos = getProdutos();
@@ -223,7 +207,4 @@ public class Notas {
 	public Integer getNumeroNotas() {
 		return parseAll().size();
 	}
-
-
-
 }

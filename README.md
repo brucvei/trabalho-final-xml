@@ -39,6 +39,7 @@ Framework para desenvolvimento de aplicações web com Node.js. Utilizado para c
 - XML Parsing: https://xml.jcabi.com/
 - Convert xml to json: https://javatpoint.com/convert-xml-to-json-in-java
 - Json validator: https://www.techblogss.com/java/java-json-schema-validation
+- Jade: https://naltatis.github.io/jade-syntax-docs/
 
 ## Importante
 Sobre o cálculo dos impostos e o valor aproximado de tributo, 
